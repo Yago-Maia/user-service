@@ -1,0 +1,16 @@
+spring:
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        username: postgres
+        url: jdbc:postgresql://user-service-db.ccftlxzcd5mi.us-east-1.rds.amazonaws.com:5432/postgres
+        password: userservice
+    jpa:
+        hibernate:
+            ddl-auto: update
+    mvc:
+        pathmatch:
+            matching-strategy: ant-path-matcher
+security:
+    jwt:
+        expiration: 30
+        signature-key: byBjYWNob3JybyBsYXRl
