@@ -10,7 +10,6 @@ com/portfolio/userservice/exception/InvalidPasswordException.class
 com/portfolio/userservice/service/UserService.class
 com/portfolio/userservice/api/UserApi.class
 META-INF/spring-configuration-metadata.json
-com/portfolio/userservice/constants/Messages.class
 com/portfolio/userservice/repository/UserRepository.class
 com/portfolio/userservice/exception/ExceptionResponse.class
 com/portfolio/userservice/api/controller/AuthController.class
