@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "2eed90d9-5a98-4d2c-8b47-bae1c743f003",
+		"name": "TCC - User Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzIxMDkyfQ.KiwT8DLFb5jgpBHJf_FExHtI_nqYZMxP0xiY3LJLlo8fFMTz_gdReTL53dik7Q6WvJStTPJavOgn_WjEdrd9_g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzE3MDE5fQ.ExxwZdKoTR96jpwEPgbuBr5EmiEHfO5ui8SVK62KZGrH1ZMcn7D6wfV1kqdMmCXDAC6vE0bqLO0ALE0nRzMpcQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user",
+					"protocol": "http",
+					"host": [
+						"ec2-52-23-254-85",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				},
+				"description": "Recuperar todos os usuários"
+			},
+			"response": []
+		},
+		{
+			"name": "Get user by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzIxMDkyfQ.KiwT8DLFb5jgpBHJf_FExHtI_nqYZMxP0xiY3LJLlo8fFMTz_gdReTL53dik7Q6WvJStTPJavOgn_WjEdrd9_g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4Mjk4NzgzfQ.Sm31aXnjkEZQoQqWLCnsgQCrOrI5_yDMsg5waFn3ejmsPsLMRbhVdGbHm0seBKwm4_mxcK6A1w3LtQhujU2rUA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user/1",
+					"protocol": "http",
+					"host": [
+						"ec2-52-23-254-85",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1"
+					]
+				},
+				"description": "Recuperar todos os usuários"
+			},
+			"response": []
+		},
+		{
+			"name": "Create user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4Mjk4NjU1fQ.JgJJOSpaLOhS5haTWEW7hmP7NKmJpN6E9FaWDOJrSy5Y1y2d_0sb5vcCdTtQE8KpamQqxPLCHv4vY8SxyhHElg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Yago\",\n    \"lastName\": \"Maia\",\n    \"email\": \"yagogmaia@gmail.com\",\n    \"password\": \"shafttbr\",\n    \"role\": \"ADMINISTRATOR\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user",
+					"protocol": "http",
+					"host": [
+						"ec2-52-23-254-85",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				},
+				"description": "Criar usuário"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzIxMDkyfQ.KiwT8DLFb5jgpBHJf_FExHtI_nqYZMxP0xiY3LJLlo8fFMTz_gdReTL53dik7Q6WvJStTPJavOgn_WjEdrd9_g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4Mjk4NjU1fQ.JgJJOSpaLOhS5haTWEW7hmP7NKmJpN6E9FaWDOJrSy5Y1y2d_0sb5vcCdTtQE8KpamQqxPLCHv4vY8SxyhHElg",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"firstName\": \"Yago\",\n    \"lastName\": \"Maia\",\n    \"email\": \"yagogmaia@gmail.com\",\n    \"password\": \"shafttbr\",\n    \"role\": \"ADMINISTRATOR\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user",
+					"protocol": "http",
+					"host": [
+						"ec2-52-23-254-85",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				},
+				"description": "Criar usuário"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "shafttbr",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "yagogmaia@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"yagogmaia@gmail.com\",\n    \"password\": \"shafttbr\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/auth",
+					"protocol": "http",
+					"host": [
+						"ec2-52-23-254-85",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzIxMDkyfQ.KiwT8DLFb5jgpBHJf_FExHtI_nqYZMxP0xiY3LJLlo8fFMTz_gdReTL53dik7Q6WvJStTPJavOgn_WjEdrd9_g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user/1",
+					"protocol": "http",
+					"host": [
+						"ec2-52-23-254-85",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
