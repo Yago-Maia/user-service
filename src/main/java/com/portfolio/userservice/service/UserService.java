@@ -72,10 +72,14 @@ public class UserService implements UserDetailsService {
         throw new InvalidPasswordException();
     }
 
+    public UserVO findByEmail(String email) {
+        return UserVO.create(userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Nenhum usuário encontrado para este ID.")));
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Nenhum usuário encontrado para este email."));
+        UserVO user = this.findByEmail(email);
 
         String[] role = new String[]{user.getRole().toString()};
 
