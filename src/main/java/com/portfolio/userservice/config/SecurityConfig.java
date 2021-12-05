@@ -1,9 +1,9 @@
 package com.portfolio.userservice.config;
 
 import com.portfolio.userservice.entity.enums.Role;
+import com.portfolio.userservice.security.AuthService;
 import com.portfolio.userservice.security.jwt.JwtAuthFilter;
 import com.portfolio.userservice.security.jwt.JwtService;
-import com.portfolio.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -21,12 +21,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserService userService;
+    private final AuthService authService;
     private final JwtService jwtService;
 
     @Autowired
-    public SecurityConfig(UserService userService, JwtService jwtService) {
-        this.userService = userService;
+    public SecurityConfig(AuthService authService, JwtService jwtService) {
+        this.authService = authService;
         this.jwtService = jwtService;
     }
 
@@ -37,13 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public OncePerRequestFilter jwtFilter() {
-        return new JwtAuthFilter(jwtService, userService);
+        return new JwtAuthFilter(jwtService, authService);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .userDetailsService(userService)
+            .userDetailsService(authService)
             .passwordEncoder(passwordEncoder());
     }
 
@@ -52,8 +52,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/user/{id}")
+                    .authenticated()
                 .antMatchers(HttpMethod.GET,"/user/**")
                     .hasRole(Role.ADMINISTRATOR.toString())
+                .antMatchers(HttpMethod.PUT, "/user/**")
+                    .authenticated()
+                .antMatchers(HttpMethod.DELETE, "/user/**")
+                    .authenticated()
+                .antMatchers(HttpMethod.POST, "/user/**")
+                    .permitAll()
                 .antMatchers("/auth/**").permitAll()
             .and()
                 .sessionManagement()

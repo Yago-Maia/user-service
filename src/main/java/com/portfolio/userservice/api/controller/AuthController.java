@@ -5,10 +5,9 @@ import com.portfolio.userservice.data.vo.CredentialsVO;
 import com.portfolio.userservice.data.vo.TokenVO;
 import com.portfolio.userservice.entity.User;
 import com.portfolio.userservice.exception.InvalidPasswordException;
+import com.portfolio.userservice.security.AuthService;
 import com.portfolio.userservice.security.jwt.JwtService;
-import com.portfolio.userservice.service.UserService;
 import io.swagger.annotations.Api;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,12 +17,17 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 @Api("Api de autenticação")
 public class AuthController implements AuthApi {
 
-    private final UserService userService;
     private final JwtService jwtService;
+    private final AuthService authService;
+
+    public AuthController(JwtService jwtService, AuthService authService) {
+        this.jwtService = jwtService;
+        this.authService = authService;
+    }
+
 
     @Override
     public TokenVO authenticate(CredentialsVO credentialsVO) {
@@ -32,7 +36,7 @@ public class AuthController implements AuthApi {
                     .email(credentialsVO.getEmail())
                     .password(credentialsVO.getPassword())
                     .build();
-            UserDetails userAuthenticated = userService.authenticate(user);
+            UserDetails userAuthenticated = authService.authenticate(user);
 
             String token = jwtService.generateToken(user);
 

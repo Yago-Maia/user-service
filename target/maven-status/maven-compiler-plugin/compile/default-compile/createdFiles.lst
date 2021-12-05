@@ -1,7 +1,9 @@
+com/portfolio/userservice/exception/NotAllowedException.class
 com/portfolio/userservice/api/AuthApi.class
 com/portfolio/userservice/entity/enums/Role.class
 com/portfolio/userservice/security/jwt/JwtAuthFilter.class
 com/portfolio/userservice/entity/User$UserBuilder.class
+com/portfolio/userservice/security/UserSS$UserBuilder.class
 com/portfolio/userservice/api/controller/UserController.class
 com/portfolio/userservice/data/vo/CredentialsVO.class
 com/portfolio/userservice/data/vo/TokenVO.class
@@ -10,6 +12,7 @@ com/portfolio/userservice/exception/InvalidPasswordException.class
 com/portfolio/userservice/service/UserService.class
 com/portfolio/userservice/api/UserApi.class
 META-INF/spring-configuration-metadata.json
+com/portfolio/userservice/constants/Messages.class
 com/portfolio/userservice/repository/UserRepository.class
 com/portfolio/userservice/exception/ExceptionResponse.class
 com/portfolio/userservice/api/controller/AuthController.class
@@ -17,6 +20,8 @@ com/portfolio/userservice/entity/User.class
 com/portfolio/userservice/config/SecurityConfig.class
 com/portfolio/userservice/data/vo/UserVO.class
 com/portfolio/userservice/UserServiceApplication.class
+com/portfolio/userservice/security/AuthService.class
+com/portfolio/userservice/security/UserSS.class
 com/portfolio/userservice/exception/handler/CustomizedResponseEntityExceptionHandler.class
 com/portfolio/userservice/exception/ApiErrors.class
 com/portfolio/userservice/config/SwaggerConfig.class

@@ -2,35 +2,35 @@ package com.portfolio.userservice.service;
 
 import com.portfolio.userservice.data.vo.UserVO;
 import com.portfolio.userservice.entity.User;
-import com.portfolio.userservice.exception.InvalidPasswordException;
+import com.portfolio.userservice.exception.NotAllowedException;
 import com.portfolio.userservice.exception.ResourceNotFoundException;
 import com.portfolio.userservice.repository.UserRepository;
+import com.portfolio.userservice.security.AuthService;
+import com.portfolio.userservice.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
+import static com.portfolio.userservice.constants.Messages.NOT_ALLOWED_USER_UPDATE;
+
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final AuthService authService;
 
     @Autowired
-    public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+    public UserService(UserRepository userRepository, AuthService authService) {
+        this.authService = authService;
         this.userRepository = userRepository;
     }
 
     public UserVO create(UserVO userVO) {
-        userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
+        userVO.setPassword(authService.passwordEncoder.encode(userVO.getPassword()));
         return UserVO.create(userRepository.save(User.create(userVO)));
     }
 
@@ -44,6 +44,9 @@ public class UserService implements UserDetailsService {
     public UserVO findById(Long id) {
         var entity = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Nenhum usuário encontrado para este ID."));
+
+        this.isAllowed(entity.getId());
+
         return UserVO.create(entity);
     }
 
@@ -54,22 +57,22 @@ public class UserService implements UserDetailsService {
             throw new ResourceNotFoundException("Nenhum usuário encontrado para este ID.");
         }
 
+        this.isAllowed(optionalUser.get().getId());
+
+        if (userVO.getPassword() != null) {
+            userVO.setPassword(authService.passwordEncoder.encode(userVO.getPassword()));
+        }
+
         return UserVO.create(userRepository.save(User.create(userVO)));
     }
 
     public void delete(Long id) {
         var entity = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Nenhum usuário encontrado para este ID."));
+
+        this.isAllowed(entity.getId());
+
         userRepository.delete(entity);
-    }
-
-    public UserDetails authenticate(User user) {
-        UserDetails userDetails = loadUserByUsername(user.getEmail());
-        if(passwordEncoder.matches(user.getPassword(), userDetails.getPassword())) {
-            return userDetails;
-        }
-
-        throw new InvalidPasswordException();
     }
 
     public UserVO findByEmail(String email) {
@@ -77,16 +80,11 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new ResourceNotFoundException("Nenhum usuário encontrado para este ID.")));
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserVO user = this.findByEmail(email);
-
-        String[] role = new String[]{user.getRole().toString()};
-
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getEmail())
-                .password(user.getPassword())
-                .roles(role)
-                .build();
+    private void isAllowed(Long id) {
+        UserSS userSS = UserSS.authenticated();
+        assert userSS != null;
+        if(!Objects.equals(userSS.getIdUser(), id)) {
+            throw new NotAllowedException(NOT_ALLOWED_USER_UPDATE);
+        }
     }
 }

@@ -6,6 +6,37 @@
 	},
 	"item": [
 		{
+			"name": "Auth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"yagogmaia@gmail.com\",\n    \"password\": \"senha\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/auth",
+					"protocol": "http",
+					"host": [
+						"ec2-52-23-254-85.compute-1.amazonaws.com"
+					],
+					"port": "8080",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get all users",
 			"request": {
 				"auth": {
@@ -13,7 +44,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzIxMDkyfQ.KiwT8DLFb5jgpBHJf_FExHtI_nqYZMxP0xiY3LJLlo8fFMTz_gdReTL53dik7Q6WvJStTPJavOgn_WjEdrd9_g",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJpZFVzZXIiOjIxLCJzdWIiOiJtYm9yY2FyaUBnbWFpbC5jb20iLCJyb2xlIjoiU0lNUExFIiwiZXhwIjoxNjM4NjUxNjU4fQ.lDe1HnuWmK0_Vx5NpDanfDdnOd0zOGaspvgGpk5MxO1BIFTncBdFzRnH5HWkQquU3eprR6sjFTnF7N5asoivgA",
 							"type": "string"
 						}
 					]
@@ -22,7 +53,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzE3MDE5fQ.ExxwZdKoTR96jpwEPgbuBr5EmiEHfO5ui8SVK62KZGrH1ZMcn7D6wfV1kqdMmCXDAC6vE0bqLO0ALE0nRzMpcQ",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzkyNjcxfQ.hNY1pJwaxrML6hcp4DZYN2gzl4NPPJCMDbqfxyIE4fBMZ3xf68fP9npwghfRhNDAmqmvoEzSDZo66lp5E_oy-Q",
 						"type": "text",
 						"disabled": true
 					}
@@ -31,10 +62,7 @@
 					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user",
 					"protocol": "http",
 					"host": [
-						"ec2-52-23-254-85",
-						"compute-1",
-						"amazonaws",
-						"com"
+						"ec2-52-23-254-85.compute-1.amazonaws.com"
 					],
 					"port": "8080",
 					"path": [
@@ -53,7 +81,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzIxMDkyfQ.KiwT8DLFb5jgpBHJf_FExHtI_nqYZMxP0xiY3LJLlo8fFMTz_gdReTL53dik7Q6WvJStTPJavOgn_WjEdrd9_g",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJpZFVzZXIiOjIxLCJzdWIiOiJtYm9yY2FyaUBnbWFpbC5jb20iLCJyb2xlIjoiU0lNUExFIiwiZXhwIjoxNjM4NjUxNjU4fQ.lDe1HnuWmK0_Vx5NpDanfDdnOd0zOGaspvgGpk5MxO1BIFTncBdFzRnH5HWkQquU3eprR6sjFTnF7N5asoivgA",
 							"type": "string"
 						}
 					]
@@ -67,18 +95,15 @@
 					}
 				],
 				"url": {
-					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user/1",
+					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user/21",
 					"protocol": "http",
 					"host": [
-						"ec2-52-23-254-85",
-						"compute-1",
-						"amazonaws",
-						"com"
+						"ec2-52-23-254-85.compute-1.amazonaws.com"
 					],
 					"port": "8080",
 					"path": [
 						"user",
-						"1"
+						"21"
 					]
 				},
 				"description": "Recuperar todos os usuários"
@@ -102,7 +127,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Yago\",\n    \"lastName\": \"Maia\",\n    \"email\": \"yagogmaia@gmail.com\",\n    \"password\": \"shafttbr\",\n    \"role\": \"ADMINISTRATOR\"\n}",
+					"raw": "{\n    \"firstName\": \"Matheus\",\n    \"lastName\": \"Santana\",\n    \"email\": \"mborcari@gmail.com\",\n    \"password\": \"mimica\",\n    \"role\": \"SIMPLE\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,10 +138,7 @@
 					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user",
 					"protocol": "http",
 					"host": [
-						"ec2-52-23-254-85",
-						"compute-1",
-						"amazonaws",
-						"com"
+						"ec2-52-23-254-85.compute-1.amazonaws.com"
 					],
 					"port": "8080",
 					"path": [
@@ -135,7 +157,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwiZXhwIjoxNjM4MzIxMDkyfQ.KiwT8DLFb5jgpBHJf_FExHtI_nqYZMxP0xiY3LJLlo8fFMTz_gdReTL53dik7Q6WvJStTPJavOgn_WjEdrd9_g",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJpZFVzZXIiOjIwLCJzdWIiOiJ5YWdvZ21haWFAZ21haWwuY29tIiwicm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjE2Mzg2NTE1MTZ9.ibDC0qrEfyjPAcIUmOoQlD43i6Hd_e8owtNAn3wHw5ZgqG7fa-r5--DSC2iN2ouVV6LwR1nDm5rWEb54t07-gw",
 							"type": "string"
 						}
 					]
@@ -151,7 +173,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 1,\n    \"firstName\": \"Yago\",\n    \"lastName\": \"Maia\",\n    \"email\": \"yagogmaia@gmail.com\",\n    \"password\": \"shafttbr\",\n    \"role\": \"ADMINISTRATOR\"\n}",
+					"raw": "{\n    \"id\": 20,\n    \"firstName\": \"Yago\",\n    \"lastName\": \"Guimaraes\",\n    \"email\": \"yagogmaia@gmail.com\",\n    \"password\": \"shafttbr\",\n    \"role\": \"ADMINISTRATOR\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -162,10 +184,7 @@
 					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user",
 					"protocol": "http",
 					"host": [
-						"ec2-52-23-254-85",
-						"compute-1",
-						"amazonaws",
-						"com"
+						"ec2-52-23-254-85.compute-1.amazonaws.com"
 					],
 					"port": "8080",
 					"path": [
@@ -173,52 +192,6 @@
 					]
 				},
 				"description": "Criar usuário"
-			},
-			"response": []
-		},
-		{
-			"name": "Auth",
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "shafttbr",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "yagogmaia@gmail.com",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"yagogmaia@gmail.com\",\n    \"password\": \"shafttbr\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/auth",
-					"protocol": "http",
-					"host": [
-						"ec2-52-23-254-85",
-						"compute-1",
-						"amazonaws",
-						"com"
-					],
-					"port": "8080",
-					"path": [
-						"auth"
-					]
-				}
 			},
 			"response": []
 		},
@@ -241,10 +214,7 @@
 					"raw": "http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user/1",
 					"protocol": "http",
 					"host": [
-						"ec2-52-23-254-85",
-						"compute-1",
-						"amazonaws",
-						"com"
+						"ec2-52-23-254-85.compute-1.amazonaws.com"
 					],
 					"port": "8080",
 					"path": [

@@ -73,4 +73,12 @@ public class JwtService {
     public String getEmailUser(String token) throws ExpiredJwtException {
         return (String) getClaims(token).getSubject();
     }
+
+    public String getRole(String token) throws ExpiredJwtException {
+        return (String) getClaims(token).get("role");
+    }
+
+    public Long getUserId(String token) throws ExpiredJwtException {
+        return ((Integer) getClaims(token).get("idUser")).longValue();
+    }
 }

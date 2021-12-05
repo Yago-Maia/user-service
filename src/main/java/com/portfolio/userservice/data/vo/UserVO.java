@@ -2,7 +2,6 @@ package com.portfolio.userservice.data.vo;
 
 import com.portfolio.userservice.entity.User;
 import com.portfolio.userservice.entity.enums.Role;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.modelmapper.ModelMapper;

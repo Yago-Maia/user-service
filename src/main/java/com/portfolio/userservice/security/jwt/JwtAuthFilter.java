@@ -1,9 +1,9 @@
 package com.portfolio.userservice.security.jwt;
 
-import com.portfolio.userservice.service.UserService;
+import com.portfolio.userservice.security.AuthService;
+import com.portfolio.userservice.security.UserSS;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -16,11 +16,11 @@ import java.io.IOException;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final UserService userService;
+    private final AuthService authService;
 
-    public JwtAuthFilter(JwtService jwtService, UserService userService) {
+    public JwtAuthFilter(JwtService jwtService, AuthService authService) {
         this.jwtService = jwtService;
-        this.userService = userService;
+        this.authService = authService;
     }
 
     @Override
@@ -35,7 +35,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
             if(jwtService.isTokenValid(token)) {
                 String emailUser = jwtService.getEmailUser(token);
-                UserDetails user = userService.loadUserByUsername(emailUser);
+                String role = jwtService.getRole(token);
+                Long id = jwtService.getUserId(token);
+                UserSS user = authService.loadUserByUsernameAndRole(emailUser, role, id);
+
                 UsernamePasswordAuthenticationToken userAuthentication =
                         new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                 userAuthentication.setDetails(
