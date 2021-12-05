@@ -8,23 +8,16 @@ docker pull yagogmaia/user-service
 docker run yagogmaia/user-service
 ```
 
-# Clonar e rodar projeto via maven
 ## Clonar o projeto:
 Acesse o diretório desejado para alocar o projeto pelo terminal e execute o comando:
 ```bash
 git clone https://github.com/Yago-Maia/user-service.git
 ```
 
-## Instalação do Maven:
-Acesse o diretório pelo terminal e instale o Maven junto com as dependências necessárias para o projeto.
+## Swagger:
+Link para acessar o Swagger:
 ```bash
-mvn install
-```
-
-## Executar a aplicação:
-Ainda no terminal, executar o comando no diretório raiz do projeto.
-```bash
-mvn spring-boot:run
+http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/swagger-ui/
 ```
 
 ## Postman:
@@ -95,10 +88,4 @@ Deleta um usuário no banco. Necessário enviar o token de autenticação e ser 
 ```bash
 curl --location --request DELETE 'http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/user/1' \
 --header 'Authorization: {token}'
-```
-
-## Swagger:
-Para acessar o Swagger é necessário acessar o link abaixo com o projeto em execução:
-```bash
-http://ec2-52-23-254-85.compute-1.amazonaws.com:8080/swagger-ui/
 ```
